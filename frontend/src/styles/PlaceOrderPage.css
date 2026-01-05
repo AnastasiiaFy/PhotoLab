@@ -1,0 +1,105 @@
+/* ---------- Загальний фон сторінки ---------- */
+.place-order-page {
+  background-color: #590000; /* темно-бордовий фон */
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center; /* центруємо весь вміст горизонтально */
+  box-sizing: border-box;
+}
+
+/* ---------- Контейнер всередині сторінки ---------- */
+.place-order-container {
+  display: flex;
+  gap: 50px;              /* відстань між лівим і правим блоком */
+  max-width: 1200px;      /* ширина контейнера */
+  width: 100%;
+  flex-wrap: wrap;         /* щоб на маленьких екранах блоки ставали вертикально */
+}
+
+/* ---------- Ліва та права частина (білі прямокутники) ---------- */
+.checkout-left,
+.checkout-right {
+  background-color: #ffffff; /* білий фон */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* легка тінь для об’єму */
+  min-width: 300px;         /* мінімальна ширина для мобільних */
+  height: auto; 
+  flex: none; /* щоб ширина була фіксованою, а висота не тяглася */
+}
+
+.checkout-left {
+  flex: 1; /* наприклад, ширша частина */
+}
+
+.checkout-right {
+  /*flex: 1;  права частина вже */
+  flex: none;     /* висота та ширина під вміст */
+  width: 450px;           /* фіксована ширина */
+  align-self: flex-start; /* блок не розтягується по висоті батька */
+}
+
+/* ---------- Ліва частина — форма ---------- */
+.checkout-left h2,
+.checkout-right h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.checkout-left label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+}
+
+.checkout-left input,
+.checkout-left select {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  height: 38px;
+  margin-bottom: 15px;
+  appearance: none;
+}
+
+.checkout-left select {
+    cursor: pointer;
+}
+
+/* ---------- Права частина — підсумки ---------- */
+.checkout-right .summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  font-weight: 600;
+  font-size: 17px;
+}
+
+.checkout-right .total {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.checkout-right .checkout-btn {
+  width: 100%;
+  margin-top: 30px;
+  padding: 12px;
+  background: #E8EB81;
+  color: #000;
+  font-size: 19px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.checkout-right .checkout-btn:hover {
+  background-color: #dbdf5d;       
+}
