@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
-const API_URL = "http://localhost:4000/api/users";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const AuthContextProvider = ({ children }) => {
   const navigate = useNavigate();
 
-  const [user, setUser] = useState(null);       // {_id, name, email}
+  const [user, setUser] = useState(null);       
   const [token, setToken] = useState(null);
-  const [likes, setLikes] = useState([]);     // ВПОДОБАННЯ
+  const [likes, setLikes] = useState([]);     
   const [loading, setLoading] = useState(true);
 
   const isAuthenticated = !!token;
@@ -40,7 +40,7 @@ const AuthContextProvider = ({ children }) => {
   /* ================= FETCH LIKES FROM SERVER ================= */
   const fetchLikes = async (authToken) => {
     try {
-      const res = await fetch(`${API_URL}/likes`, {
+      const res = await fetch(`${BASE_URL}/api/users/likes`, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -66,7 +66,7 @@ const AuthContextProvider = ({ children }) => {
 
   /* ================= LOGIN ================= */
   const login = async (email, password) => {
-    const res = await fetch(`${API_URL}/login`, {
+    const res = await fetch(`${BASE_URL}/api/users/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -99,7 +99,7 @@ const AuthContextProvider = ({ children }) => {
 
   /* ================= REGISTER ================= */
   const register = async (name, email, password) => {
-    const res = await fetch(`${API_URL}/register`, {
+    const res = await fetch(`${BASE_URL}/api/users/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ name, email, password }),
@@ -136,7 +136,7 @@ const AuthContextProvider = ({ children }) => {
     if (!token) return;
 
     try {
-      const res = await fetch(`${API_URL}/like/${productId}`, {
+      const res = await fetch(`${BASE_URL}/api/users/like/${productId}`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

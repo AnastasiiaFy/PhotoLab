@@ -8,7 +8,7 @@ import PhotoUploader from "../components/PhotoUploader";
 import "../styles/ProductPage.css";
 import placeholder from "/assets/images/placeholder.png";
 
-const API_URL = "http://localhost:4000/api/products";
+const API_URL = import.meta.env.VITE_BACKEND_URL;
 
 
 const ProductPage = () => {
@@ -30,7 +30,7 @@ const ProductPage = () => {
         setLoading(true);
         setError(null);
 
-        const res = await fetch(`${API_URL}/${id}`, {
+        const res = await fetch(`${API_URL}/api/products/${id}`, {
           signal: controller.signal
         });
 

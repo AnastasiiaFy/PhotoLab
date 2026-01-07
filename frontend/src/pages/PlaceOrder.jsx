@@ -4,6 +4,8 @@ import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import "../styles/PlaceOrderPage.css";
 
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 const PlaceOrder = () => {
   const { cartItems, getCartTotal, delivery_fee, currency, setCartItems } = useContext(ShopContext);
   const { token } = useContext(AuthContext);
@@ -49,7 +51,7 @@ const PlaceOrder = () => {
     try {
       setLoading(true);
 
-      const res = await fetch("http://localhost:4000/api/orders", {
+      const res = await fetch(`${BASE_URL}/api/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

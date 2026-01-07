@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-//import {products} from "../data/products.js"
-
 export const ShopContext = createContext();
+
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const ShopContextProvider = (props) => {
     const currency = '₴';
@@ -38,7 +38,7 @@ const ShopContextProvider = (props) => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const res = await fetch("http://localhost:4000/api/products"); // заміни на свій бекенд
+                const res = await fetch(`${BASE_URL}/api/products`); 
                 if (!res.ok) throw new Error("Помилка при завантаженні продуктів");
                 const data = await res.json();
                 setProducts(data);

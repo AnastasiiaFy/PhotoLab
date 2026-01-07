@@ -6,6 +6,8 @@ import '../styles/Profile.css';
 import rollUp from "/assets/icons/roll-up.png";
 import rollDown from "/assets/icons/roll-down.png";
 
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 
 const Profile = () => {
   const { user, token, likes, logout } = useContext(AuthContext);
@@ -38,7 +40,7 @@ const Profile = () => {
         setLoading(true);
         setError(null);
 
-        const res = await fetch("http://localhost:4000/api/orders", {
+        const res = await fetch(`${BASE_URL}/api/orders`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -69,7 +71,7 @@ const Profile = () => {
         setWishlistLoading(true);
         setWishlistError(null);
 
-        const res = await fetch("http://localhost:4000/api/users/likes", {
+        const res = await fetch(`${BASE_URL}/api/users/likes`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
