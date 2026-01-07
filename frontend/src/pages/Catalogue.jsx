@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { ShopContext } from "../context/shopContex";
+import { ShopContext } from "../context/ShopContex";
 import CategoryList from "../components/CategoryList";
 import ProductCard from "../components/ProductCard";
 import "../styles/Catalogue.css";

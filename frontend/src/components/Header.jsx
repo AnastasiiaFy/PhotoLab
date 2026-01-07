@@ -11,7 +11,7 @@ import profileIconNA from '/assets/icons/user-unactive.png';
 import catalogIconA from '/assets/icons/catalogue-active.png';
 import cartIconA from '/assets/icons/cart-active.png';
 import profileIconA from '/assets/icons/user-active.png';
-import { ShopContext } from '../context/shopContex';
+import { ShopContext } from '../context/ShopContex';
 
 import CartSidebar from "./CartSidebar"; 
 

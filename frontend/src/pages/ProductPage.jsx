@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useContext, useEffect, useMemo } from "react";
-import { ShopContext } from "../context/shopContex";
+import { ShopContext } from "../context/ShopContex";
 
 import LikeButton from "../components/LikeButton";
 import PhotoUploader from "../components/PhotoUploader";

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { ShopContext } from "../context/shopContex";
+import { ShopContext } from "../context/ShopContex";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import "../styles/PlaceOrderPage.css";

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ShopContext } from "../context/shopContex";
+import { ShopContext } from "../context/ShopContex";
 import { AuthContext } from "../context/AuthContext";
 import "../styles/CartSidebar.css";
 

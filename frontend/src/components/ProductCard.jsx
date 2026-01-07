@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import '../styles/ProductCard.css';
 import LikeButton from "./LikeButton";
-import { ShopContext } from "../context/shopContex";
+import { ShopContext } from "../context/ShopContex";
 
 
 const escapeRegExp = (string) => {
