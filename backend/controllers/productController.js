@@ -1,38 +1,31 @@
-import { v2 as cloudinary } from "cloudinary";
-import productModel from "../models/productModel.js";
+import Product from "../models/productModel.js"
 
-// function for listing product
-const listProducts = async (req, res) => {
+// @desc    Отримати всі продукти
+// @route   GET /api/products
+// @access  Public
+export const getProducts = async (req, res) => {
   try {
-    const products = await productModel.find({});
-    res.json({ success: true, products });
+    const products = await Product.find()
+    res.json(products)
   } catch (error) {
-    console.log(error);
-    res.json({
-      success: false,
-      message: error.message,
-    });
+    console.error(error)
+    res.status(500).json({ message: "Server error" })
   }
-};
+}
 
-
-// function for getting single product info
-const singleProduct = async (req, res) => {
+// @desc    Отримати продукт по ID
+// @route   GET /api/products/:id
+// @access  Public
+export const getProductById = async (req, res) => {
   try {
-    const { productId } = req.body;
-    const product = await productModel.findById(productId);
-
-    res.json({
-      success: true,
-      product,
-    });
+    const product = await Product.findById(req.params.id)
+    if (product) {
+      res.json(product)
+    } else {
+      res.status(404).json({ message: "Product not found" })
+    }
   } catch (error) {
-    console.log(error);
-    res.json({
-      success: false,
-      message: error.message,
-    });
+    console.error(error)
+    res.status(500).json({ message: "Server error" })
   }
-};
-
-export { listProducts, singleProduct };
+}

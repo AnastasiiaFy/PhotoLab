@@ -1,3 +1,15 @@
+.product-downloading {
+  background: #590000;
+  color: white;
+  font-size: 27px;
+  font-family: 'Abhaya Libre', serif;
+  height: calc(100vh - 395px); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
 .catalogue {
   display: flex;
   padding: 60px 80px;
@@ -97,3 +109,124 @@
   align-items: start;
 }
 
+
+@media (max-width: 1024px) and (min-width: 769px) {
+
+  /* ===== ОСНОВНА СІТКА ===== */
+  .catalogue {
+    padding: 40px 30px;
+    gap: 40px;
+  }
+
+  /* ===== КАТЕГОРІЇ ===== */
+  .categories {
+    width: 220px;
+    padding: 16px 12px;
+    gap: 10px;
+  }
+
+  .category-item {
+    font-size: 15px;
+    padding: 10px 14px;
+  }
+
+  .category-item.active {
+    font-size: 16px;
+  }
+
+  /* ===== ПОШУК ===== */
+  .search-input.open {
+    width: 280px;
+  }
+
+  /* ===== ТОВАРИ ===== */
+  .catalogue-products {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  /* ===== LOADING ===== */
+  .product-downloading {
+    font-size: 22px;
+  }
+}
+
+
+
+@media (max-width: 768px) {
+
+  /* ===== ОСНОВНА СІТКА ===== */
+  .catalogue {
+    flex-direction: column;
+    padding: 30px 16px;
+    gap: 30px;
+  }
+
+  /* ===== КАТЕГОРІЇ ===== */
+  .categories {
+    flex-direction: row;
+    width: 100%;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .category-item {
+    white-space: nowrap;
+    padding: 10px 14px;
+    font-size: 15px;
+  }
+
+  .category-item.active {
+    font-size: 15px;
+  }
+
+  /* ===== ПОШУК ===== */
+  .search-container {
+    width: 100%;
+    position: relative;
+    justify-content: flex-start;
+  }
+
+  .search-input {
+    width: 100%;
+    opacity: 1;
+    margin-right: 0;
+    padding: 12px 48px 12px 16px; /* місце під іконку */
+    border-radius: 8px;
+  }
+
+  .search-input.open {
+    width: 100%;
+  }
+
+  .search-button {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+  }
+
+  .search-button img {
+    width: 20px;
+  }
+
+  /* ===== ТОВАРИ ===== */
+  .catalogue-products {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin: 0 20px;
+  }
+
+  /* ===== LOADING ===== */
+  .product-downloading {
+    font-size: 20px;
+    height: auto;
+    padding: 40px 20px;
+    text-align: center;
+  }
+}

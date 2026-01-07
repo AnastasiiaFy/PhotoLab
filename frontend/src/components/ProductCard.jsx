@@ -2,10 +2,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import '../styles/ProductCard.css';
 import LikeButton from "./LikeButton";
-
-import placeholder from "../assets/images/placeholder.png";
 import { ShopContext } from "../context/shopContex";
-
 
 
 const escapeRegExp = (string) => {
@@ -32,12 +29,13 @@ const highlightText = (text, query) => {
 
 const ProductCard = ({ product, searchQuery  }) => {
   const navigate = useNavigate();
-
   const {currency} = useContext(ShopContext);
+  const placeholder = "/assets/images/placeholder.png";
 
   const imageSrc =
-  product.images && product.images.length > 0
-    ? product.images[0] : placeholder;  
+    product.imageUrls && product.imageUrls.length > 0
+      ? product.imageUrls[0]
+      : placeholder;
 
   return (
     <div className="product-card">
@@ -47,9 +45,9 @@ const ProductCard = ({ product, searchQuery  }) => {
       <p className="price">{product.price} {currency}</p>
 
       <div className="card-actions">
-        <LikeButton size={40} />
+        <LikeButton size={40} productId={product._id} />
 
-        <button onClick={() => navigate(`/product/${product.id}`)}>
+        <button onClick={() => navigate(`/product/${product._id}`)}>
           Детальніше
         </button>
       </div>

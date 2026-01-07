@@ -1,17 +1,15 @@
-import React from 'react'
-import { Link } from "react-router-dom";
 import '../styles/Home.css';
-import heroImageBig from '../assets/images/hero-image-big.png';
-import heroImageSmall from '../assets/images/hero-image-small.png';
+import heroImageBig from '/assets/images/hero-image-big.png';
+import heroImageSmall from '/assets/images/hero-image-small.png';
 
-import qualityIcon from '../assets/icons/quality.png';
-import colorIcon from '../assets/icons/color.png';
-import paperIcon from '../assets/icons/paper.png';
-import formatIcon from '../assets/icons/format.png';
+import qualityIcon from '/assets/icons/quality.png';
+import colorIcon from '/assets/icons/color.png';
+import paperIcon from '/assets/icons/paper.png';
+import formatIcon from '/assets/icons/format.png';
 
-import printClassicImage from '../assets/images/photo-10x15-1.png';
-import instaxImage from '../assets/images/instax-1.png';
-import polaroidImage from '../assets/images/polaroid-1.png';
+import printClassicImage from '/assets/images/photo-10x15-1.png';
+import instaxImage from '/assets/images/instax-1.png';
+import polaroidImage from '/assets/images/polaroid-1.png';
 
 const Home = () => {
   return (
@@ -30,7 +28,6 @@ const Home = () => {
             <img src={heroImageSmall} alt="Декоративне hero" className="hero-img-small"/>
           </div>
       </div>
-
 
       <div className="services">
           <h2>Lumina Lotus це</h2>
@@ -59,56 +56,28 @@ const Home = () => {
           </div>
       </div>
 
-
       <div className="popular">
         <h2>Найпопулярніші послуги</h2>
 
         <div className="popular-grid">
-          <Link to="/product-1234/print-10x15" className="popular-item">
+          <div className="popular-item">
             <img src={printClassicImage} alt="Друк фото 10x15" />
             <p>Друк фото 10×15</p>
-          </Link>
+          </div>
 
-          <Link to="/product-1234/instax" className="popular-item">
+          <div className="popular-item">
             <img src={instaxImage} alt="Друк фото Instax" />
             <p>Друк фото Instax</p>
-          </Link>
+          </div>
 
-          <Link to="/product-1234/polaroid" className="popular-item">
+          <div className="popular-item">
             <img src={polaroidImage} alt="Друк фото Polaroid" />
             <p>Друк фото Polaroid</p>
-          </Link>
+          </div>
         </div>
       </div>
-
-
-
     </div>
   )
 }
 
-export default Home
-
-/*
-      <div className="popular">
-        <h2>Найпопулярніші послуги</h2>
-
-        <div className="popular-grid">
-          <div className="popular-item">
-            <img src={printClassicImage} alt="Друк фото 10x15" />
-            <p>Друк фото 10×15</p>
-          </div>
-
-          <div className="popular-item">
-            <img src={instaxImage} alt="Друк фото Instax" />
-            <p>Друк фото Instax</p>
-          </div>
-
-          <div className="popular-item">
-            <img src={polaroidImage} alt="Друк фото Polaroid" />
-            <p>Друк фото Polaroid</p>
-          </div>
-        </div>
-      </div>
-
-*/
+export default Home;

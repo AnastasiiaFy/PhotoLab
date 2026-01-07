@@ -137,3 +137,148 @@
   font-weight: 500;
   margin-top: 10px;
 }
+
+
+
+@media (max-width: 1024px) and (min-width: 769px) {
+
+  .cart-sidebar {
+    width: 550px; /* менше ніж десктоп */
+    padding: 25px;
+    top: 0;
+    right: 0;
+  }
+
+  .cart-item {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 15px;
+    margin: 15px 0;
+  }
+
+  .cart-product {
+    gap: 10px;
+  }
+
+  .cart-preview {
+    height: 70px;
+    width: auto;
+  }
+
+  .cart-title {
+    font-size: 15px;
+  }
+
+  .cart-photo-number {
+    font-size: 16px;
+  }
+
+  .quantity-controls button {
+    width: 24px;
+    height: 24px;
+  }
+
+  .cart-price {
+    font-size: 18px;
+  }
+
+  .checkout-btn {
+    font-size: 18px;
+    padding: 10px 30px;
+  }
+
+  .cart-total {
+    font-size: 22px;
+  }
+
+  .cart-sidebar h2 {
+    font-size: 24px;
+  }
+
+  .empty_cart {
+    font-size: 19px;
+  }
+
+  .divider {
+    height: 2px;
+  }
+}
+
+
+@media (max-width: 768px) {
+
+  .cart-sidebar {
+    width: 100%;
+    padding: 20px;
+    top: 0;
+    right: 0;
+    height: 100%;
+    box-shadow: none;
+  }
+
+  .cart-item {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 15px 0;
+  }
+
+  .cart-product {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .cart-preview {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: cover;
+  }
+
+  .cart-title {
+    font-size: 16px;
+  }
+
+  .cart-photo-number {
+    font-size: 16px;
+    text-align: left;
+  }
+
+  .quantity-controls {
+    justify-content: flex-start;
+  }
+
+  .quantity-controls button {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+
+  .cart-price {
+    text-align: left;
+    font-size: 18px;
+    margin-top: 8px;
+  }
+
+  .checkout-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+  }
+
+  .cart-total {
+    justify-content: flex-start;
+    font-size: 20px;
+  }
+
+  .cart-sidebar h2 {
+    font-size: 22px;
+  }
+
+  .empty_cart {
+    font-size: 18px;
+  }
+
+  .divider {
+    height: 2px;
+  }
+}

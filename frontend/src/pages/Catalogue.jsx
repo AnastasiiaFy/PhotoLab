@@ -4,7 +4,7 @@ import CategoryList from "../components/CategoryList";
 import ProductCard from "../components/ProductCard";
 import "../styles/Catalogue.css";
 
-import searchIcon from "../assets/icons/search.png";
+import searchIcon from "/assets/icons/search.png";
 
 
 const Catalogue = () => {
@@ -14,13 +14,15 @@ const Catalogue = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Якщо продукти ще не завантажені
+  if (!products || products.length === 0) {
+    return <p className="product-downloading">Завантаження продуктів...</p>;
+  }
+
+  // Фільтрація продуктів по категорії та пошуку
   const filteredProducts = products
-    .filter(p =>
-      activeCategory === "Всі" ? true : p.category === activeCategory
-    )
-    .filter(p =>
-      p.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    .filter(p => activeCategory === "Всі" ? true : p.category === activeCategory)
+    .filter(p => p.title.toLowerCase().includes(searchQuery.toLowerCase()));
 
   return (
     <div className="catalogue">
@@ -53,7 +55,7 @@ const Catalogue = () => {
         <div className="catalogue-products">
           {filteredProducts.map(product => (
             <ProductCard
-              key={product.id}
+              key={product._id}
               product={product}
               searchQuery={searchQuery}
             />

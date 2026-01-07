@@ -9,8 +9,8 @@ import Catalogue from './pages/Catalogue'
 import ProductPage from "./pages/ProductPage";
 import Login from "./pages/Login";
 import PlaceOrder from "./pages/PlaceOrder";
-
-
+import Profile from "./pages/Profile";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 
 const App = () => {
@@ -22,7 +22,22 @@ const App = () => {
         <Route path="/catalogue"element={<Catalogue />}></Route> 
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/place-order" element={<PlaceOrder />} />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/place-order"
+          element={
+            <ProtectedRoute>
+              <PlaceOrder />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
       <Footer/>
     </div>
@@ -30,5 +45,3 @@ const App = () => {
 }
 
 export default App;
-
-/* тут треба додати рути до всіх сторінок */

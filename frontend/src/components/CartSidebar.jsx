@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { ShopContext } from "../context/shopContex";
+import { AuthContext } from "../context/AuthContext";
 import "../styles/CartSidebar.css";
 
 const CartSidebar = ({ isOpen, onClose }) => {
     const {
-        products, 
         currency, 
         cartItems, 
         increaseQuantity, 
@@ -13,10 +13,14 @@ const CartSidebar = ({ isOpen, onClose }) => {
         navigate
     } = useContext(ShopContext);
 
+    const { isAuthenticated } = useContext(AuthContext);
+
     const handlePlaceOrder = () => {
-        // можеш закрити sidebar
+        if (!isAuthenticated) {
+            navigate("/login", { state: { from: "/place-order" } });
+            return;
+        }
         onClose?.();
-        // переходимо на сторінку /place-order
         navigate("/place-order");
     };
 
@@ -41,34 +45,36 @@ const CartSidebar = ({ isOpen, onClose }) => {
                     {Object.entries(cartItems).length === 0 && <p className="empty_cart">Корзина порожня</p>}
 
                     {Object.entries(cartItems).map(([key, item]) => {
-                        const product = products.find(p => p.id === item.productId);
 
                         return (
-                        <div key={key} className="cart-item">
+                            <div key={key} className="cart-item">
 
-                            <div className="cart-product">
-                                <img src={item.previewImage} alt={product?.title} className="cart-preview" />
-                                <p className="cart-title">{product?.title}</p>
+                                <div className="cart-product">
+                                    <img src={item.previewImage} alt={item.title} className="cart-preview" />
+                                    <p className="cart-title">{item.title}</p>
+                                </div>
+
+                                <p className="cart-photo-number">
+                                    {item.uploadedPhotos?.length
+                                        ? `${item.uploadedPhotos.length} фото`
+                                        : ''}
+                                </p>
+
+                                <div className="quantity-controls">
+                                    <button onClick={() => decreaseQuantity(key)}>-</button>
+                                    <span>{item.quantity}</span>
+                                    <button onClick={() => increaseQuantity(key)}>+</button>
+                                </div>
+
+                                <p className="cart-price">
+                                    {item.price *
+                                        Math.max(1, item.uploadedPhotos?.length || 0) *
+                                        item.quantity}{" "}
+                                    {currency}
+                                </p>
                             </div>
-
-                            <p className="cart-photo-number">
-                                {item.uploadedPhotos?.length
-                                    ? `${item.uploadedPhotos.length} фото`
-                                    : ''}
-                            </p>
-
-                            <div className="quantity-controls">
-                                <button onClick={() => decreaseQuantity(key)}>-</button>
-                                <span>{item.quantity}</span>
-                                <button onClick={() => increaseQuantity(key)}>+</button>
-                            </div>
-
-                            <p className="cart-price">
-                                {item.productPrice * (item.uploadedPhotos?.length || 1) * item.quantity} {currency}
-                            </p>
-                            
-                        </div>
                         );
+                        
                     })}
                 </div>
 
@@ -78,13 +84,11 @@ const CartSidebar = ({ isOpen, onClose }) => {
                 </div>
                 <button className="checkout-btn" onClick={handlePlaceOrder}>Оформити замовлення</button>
                 
-
             </div>
             </>
         )}
         </>
     );
-
 }
 
 export default CartSidebar;

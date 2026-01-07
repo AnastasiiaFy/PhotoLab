@@ -2,12 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import '../styles/Footer.css';
 
-import logo from '../assets/icons/lotus-logo-white.png';
-import box from '../assets/icons/box.png';
+import logo from '/assets/icons/lotus-logo-white.png';
+import box from '/assets/icons/box.png';
 
-import phoneIcon from '../assets/icons/phone.png';
-import emailIcon from '../assets/icons/email.png';
-import instaIcon from '../assets/icons/instagram.png';
+import phoneIcon from '/assets/icons/phone.png';
+import emailIcon from '/assets/icons/email.png';
+import instaIcon from '/assets/icons/instagram.png';
 
 const Footer = ({ user }) => {
   return (

@@ -1,11 +1,13 @@
 import mongoose from "mongoose";
 
 const connectDB = async () => {
-    mongoose.connection.on('connected', () => {
+    try {
+        await mongoose.connect(process.env.MONGODB_URI);
         console.log('DB connected');
-    })
-
-    await mongoose.connect(`${process.env.MONGODB_URI}/photolab`)
+    } catch (err) {
+        console.error('Помилка підключення до БД:', err);
+        process.exit(1);
+    }
 }
 
 export default connectDB;

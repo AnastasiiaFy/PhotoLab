@@ -1,26 +1,28 @@
 import React, { useContext, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../styles/Header.css';
-import logo from '../assets/icons/lotus-logo-black.png';
+import { AuthContext } from "../context/AuthContext";
+import logo from '/assets/icons/lotus-logo-black.png';
 
-import catalogIconNA from '../assets/icons/catalogue-unactive.png';
-import cartIconNA from '../assets/icons/cart-unactive.png';
-import profileIconNA from '../assets/icons/user-unactive.png';
+import catalogIconNA from '/assets/icons/catalogue-unactive.png';
+import cartIconNA from '/assets/icons/cart-unactive.png';
+import profileIconNA from '/assets/icons/user-unactive.png';
 
-import catalogIconA from '../assets/icons/catalogue-active.png';
-import cartIconA from '../assets/icons/cart-active.png';
-import profileIconA from '../assets/icons/user-active.png';
+import catalogIconA from '/assets/icons/catalogue-active.png';
+import cartIconA from '/assets/icons/cart-active.png';
+import profileIconA from '/assets/icons/user-active.png';
 import { ShopContext } from '../context/shopContex';
 
 import CartSidebar from "./CartSidebar"; 
 
 
-const Header = ({ user }) => {
+const Header = () => {
   const location = useLocation();
   const path = location.pathname;
 
   const {getCartCount} = useContext(ShopContext)
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const { isAuthenticated } = useContext(AuthContext);
 
   return (
     <div className="page-wrapper">
@@ -58,7 +60,7 @@ const Header = ({ user }) => {
               </div>
 
 
-              {user ? (
+              {isAuthenticated ? (
                 <Link to="/profile">
                   <img
                     src={path === '/profile' ? profileIconA : profileIconNA}
@@ -71,6 +73,7 @@ const Header = ({ user }) => {
                   Увійти
                 </Link>
               )}
+
             </nav>
         </header>
 

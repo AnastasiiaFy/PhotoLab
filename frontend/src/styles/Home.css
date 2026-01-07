@@ -156,3 +156,185 @@ font-family: 'Abhaya Libre';
 .popular-item:hover {
   transform: scale(1.1);
 }
+
+
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  /* ================= HERO ================= */
+  .hero {
+    padding: 60px 40px 40px;
+    min-height: 100vh;
+  }
+
+  .hero-text {
+    margin-top: 120px;
+  }
+
+  .hero-text h1 {
+    font-size: 80px;
+    line-height: 1.1;
+  }
+
+  .hero-text p {
+    font-size: 20px;
+    max-width: 420px;
+  }
+
+  .hero-images {
+    gap: 16px;
+  }
+
+  .hero-img-big {
+    width: 520px;
+  }
+
+  .hero-img-small {
+    width: 320px;
+  }
+
+  /* ================= SERVICES ================= */
+  .services {
+    padding: 60px 40px;
+  }
+
+  .services h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .service-item {
+    padding: 40px 20px;
+  }
+
+  .service-item img {
+    height: 90px;
+  }
+
+  .service-item p {
+    font-size: 20px;
+  }
+
+  /* прибираємо вертикальні роздільники */
+  .service-item::after {
+    display: none;
+  }
+
+  /* ================= POPULAR ================= */
+  .popular {
+    padding: 80px 40px;
+  }
+
+  .popular h2 {
+    font-size: 36px;
+  }
+
+  .popular-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .popular-item img {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .popular-item p {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .popular-item:hover {
+    transform: none;
+  }
+}
+
+
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: auto;
+    padding: 80px 20px 60px;
+    text-align: start;
+    margin-left: 10px;
+    min-height: auto;
+    padding-bottom: 20px;
+  }
+
+  .hero-images {
+    display: none;
+  }
+
+  .hero-text {
+    margin-top: 0;
+  }
+
+  .hero-text h1 {
+    font-size: 56px;
+    line-height: 1.15;
+  }
+
+  .hero-text p {
+    font-size: 18px;
+  }
+
+  .services {
+    padding: 60px 20px;
+  }
+
+  .services h2 {
+    font-size: 32px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .service-item {
+    padding: 40px 10px;
+  }
+
+  .service-item p {
+    font-size: 18px;
+  }
+
+  /* прибираємо вертикальні лінії */
+  .service-item::after {
+    display: none;
+  }
+
+  .popular {
+    padding: 60px 20px;
+  }
+
+  .popular h2 {
+    font-size: 32px;
+  }
+
+  .popular-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .popular-item img {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .popular-item p {
+    font-size: 18px;
+    margin-bottom: 0;
+  }
+
+  .popular-item:hover {
+    transform: none;
+  }
+}

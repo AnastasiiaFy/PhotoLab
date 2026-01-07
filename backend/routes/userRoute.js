@@ -1,9 +1,22 @@
 import express from 'express';
-import {loginUser, registerUser} from '../controllers/userController.js';
+import {
+  registerUser,
+  authUser,
+  getUserProfile,
+  toggleLike,
+  getLikedProducts
+} from '../controllers/userController.js'
+import { protect } from '../middleware/authMiddleware.js'
 
-const userRouter = express.Router();
+const router = express.Router()
 
-userRouter.post('/register', registerUser)
-userRouter.post('/login', loginUser)
+/* ===== AUTH ===== */
+router.post('/register', registerUser)
+router.post('/login', authUser)
+router.get('/profile', protect, getUserProfile)
 
-export default userRouter;
+/* ===== LIKES / WISHLIST ===== */
+router.post("/like/:productId", protect, toggleLike);
+router.get("/likes", protect, getLikedProducts);
+
+export default router

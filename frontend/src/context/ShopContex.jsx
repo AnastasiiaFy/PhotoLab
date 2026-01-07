@@ -1,25 +1,61 @@
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {products} from "../data/products.js"
+//import {products} from "../data/products.js"
 
 export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
     const currency = '₴';
     const delivery_fee = 50;
-
     const navigate = useNavigate();
+    const [products, setProducts] = useState([]);
 
-    const [cartItems, setCartItems] = useState({});
+
+    // читання корзини
+    const [cartItems, setCartItems] = useState(() => {
+        try {
+            const savedCart = localStorage.getItem("cartItems");
+            return savedCart ? JSON.parse(savedCart) : {};
+        } catch (e) {
+            console.error("Помилка читання корзини з localStorage", e);
+            return {};
+        }
+    });
+
+    useEffect(() => {
+        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    }, [cartItems]);
 
 
-    const addToCart = (productId, selectedOptions = {}, uploadedPhotos = [], previewImage, productPrice) => {
+    // Очистка вмісту корзини 
+    const clearCart = () => {
+        setCartItems({});
+        localStorage.removeItem("cartItems");
+    };
+
+
+    // ===== Завантаження продуктів з бекенду =====
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const res = await fetch("http://localhost:4000/api/products"); // заміни на свій бекенд
+                if (!res.ok) throw new Error("Помилка при завантаженні продуктів");
+                const data = await res.json();
+                setProducts(data);
+            } catch (err) {
+                console.error("Помилка завантаження продуктів:", err);
+            }
+        };
+        fetchProducts();
+    }, []);
+
+
+
+    const addToCart = (product, selectedOptions = {}, uploadedPhotos = []) => {
         setCartItems(prev => {
-            // генеруємо унікальний ключ на основі id + опцій + фото
-            const key = `${productId}-${JSON.stringify(selectedOptions)}-${uploadedPhotos.length}`;
+            const key = `${product._id}-${JSON.stringify(selectedOptions)}-${uploadedPhotos.length}`;
 
             if (prev[key]) {
-            // якщо такий товар уже є — збільшуємо кількість
             return {
                 ...prev,
                 [key]: {
@@ -27,22 +63,23 @@ const ShopContextProvider = (props) => {
                 quantity: prev[key].quantity + 1
                 }
             };
-            } else {
-            // новий товар
+            }
+
             return {
-                ...prev,
-                [key]: {
-                productId,
+            ...prev,
+            [key]: {
+                productId: product._id,
+                title: product.title,
+                price: product.price,
+                previewImage: product.imageUrls?.[0] || "/assets/images/placeholder.png",
                 selectedOptions,
                 uploadedPhotos,
-                previewImage,
-                quantity: 1,
-                productPrice
-                }
-            };
+                quantity: 1
             }
+            };
         });
     };
+
 
     // ===== ЗБІЛЬШИТИ КІЛЬКІСТЬ =====
     const increaseQuantity = (key) => {
@@ -73,8 +110,10 @@ const ShopContextProvider = (props) => {
     // ===== ЗАГАЛЬНА СУМА =====
     const getCartTotal = () => {
         return Object.values(cartItems).reduce((total, item) => {
-            const photoCount = item.uploadedPhotos?.length > 0 ? item.uploadedPhotos.length : 1;
-            return total + item.productPrice * photoCount * item.quantity;
+            const photoCount =
+                item.uploadedPhotos?.length > 0 ? item.uploadedPhotos.length : 1;
+
+            return total + item.price * photoCount * item.quantity;
         }, 0);
     };
 
@@ -91,6 +130,7 @@ const ShopContextProvider = (props) => {
         setCartItems,
         getCartTotal,
         navigate,
+        clearCart,
     }
 
     return (

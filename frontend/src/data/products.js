@@ -1,14 +1,14 @@
-import photo10x15_1 from "../assets/images/photo-10x15-1.png";
-import photo10x15_2 from "../assets/images/photo-10x15-2.png";
+import photo10x15_1 from "/assets/images/photo-10x15-1.png";
+import photo10x15_2 from "/assets/images/photo-10x15-2.png";
 
-import polaroid1 from "../assets/images/polaroid-1.png";
-import polaroid2 from "../assets/images/polaroid-2.png";
+import polaroid1 from "/assets/images/polaroid-1.png";
+import polaroid2 from "/assets/images/polaroid-2.png";
 
-import instax1 from "../assets/images/instax-1.png";
-import instax2 from "../assets/images/instax-2.png";
+import instax1 from "/assets/images/instax-1.png";
+import instax2 from "/assets/images/instax-2.png";
 
-import albumFamily1 from "../assets/images/album-family-1.png";
-import albumFamily2 from "../assets/images/album-family-2.png";
+import albumFamily1 from "/assets/images/album-family-1.png";
+import albumFamily2 from "/assets/images/album-family-2.png";
 
 export const products = [
   {
